@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 
+		<bean>标签，就是将对象注入到spring容器当中
+		id：唯一标识。
+		class：类的全路径
+		scope：作用域
+			singleton：单利、默认
+				每次创建对象都是同一个对象。
+			prototype：原型 、多例
+				每次创建的对象都是新的对象。
+			session：
+				每个session会话当中的对象是同一个对象。
+			request：
+				每个request请求中的对象是同一个对象。
+		
+		struts2：默认是多例
+	 -->
+	<bean id="userService" class="com.mr.service.UserService" scope="singleton">
+		<!-- 
+			注入：第一种方法，通过set方法注入				
+			给属性赋值：property
+				name：并不是属性名，而是set方法名  首字母小写 
+				value：值
+		 -->
+<!-- 		<property name="name" value="徐浩然 di"></property> -->
+		
+		<!-- 
+			第二种方法：
+				通过构造函数注入
+				name：构造函数中的参数名
+		 -->
+<!-- 		 <constructor-arg name="name" value="构造函数注入的值"></constructor-arg> -->
+<!-- 		 <constructor-arg name="age" value="18"></constructor-arg> -->
+	</bean>
+	
+	
+	
+</beans>

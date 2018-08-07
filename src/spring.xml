@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 
+		创建userService对象
+		当bean标签一旦被加载，必然调用类的构造函数，创建对象
+	 -->
+	<bean id="userService" class="com.mr.service.UserService">
+		<!--
+			将 userDao 对象注入给userService 中的属性
+			value：注入的是普通属性的值
+			ref:注入对象 （注入其他的bean）
+		  -->
+		<property name="userDao" ref="userDao"></property>
+<!-- 		<constructor-arg name="userDao" ref="userDao"></constructor-arg> -->
+	</bean>
+	
+	<!-- 创建userDao -->
+	<bean id="userDao" class="com.mr.dao.UserDao"></bean>
+	
+</beans>

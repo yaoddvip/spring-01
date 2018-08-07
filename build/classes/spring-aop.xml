@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+
+    <bean class="com.mr.aop.StuService" id="stuService"></bean>
+
+    <bean class="com.mr.aop.Tx" id="tx"></bean>
+    
+    <aop:config>
+            <!--
+                                        配置切入点
+                    id：唯一标识。
+                    expression：定义拦截的规则
+                                                    语法：固定   execution(修饰符 返回值类型 包名.类名.方法名(参数))
+                                                    对那些方法进行拦截
+                                                    
+                                                    格式：execution(public * *(..)) 
+                                                    
+                     1：修饰符可以省略
+                     2：返回值类型必须有 ，可以使用*来代替
+                     3：通过  *..*  可以省略多个包
+                     4：参数  如果有一个可以使用  * 来代替，但是必须有参数，
+                                                            可以使用 ..  来代替所有，可有可无、
+              -->
+           <aop:pointcut expression="execution(* *..*.*(..))"
+                 id="pointcut"/>
+           <!-- 配置切面 -->
+           <aop:aspect id="aspect" ref="tx">
+               <!-- 通知 -->
+               <!-- 前置通知 -->
+               <aop:before method="begin" pointcut-ref="pointcut"/>
+               <!-- 后置通知 -->
+               <aop:after method="end" pointcut-ref="pointcut"/>
+           </aop:aspect>
+    </aop:config>
+    
+
+</beans>

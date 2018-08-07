@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd"
+	>
+	<!-- 
+		可以在<beans>标签中  通过default-autowire="byName" 
+		设置该beans标签中所有的注入类型为xx
+	 -->
+	<!-- 
+		自动注入 
+		byName：通过名称注入，
+				只要名称一样就可以注入。
+		byType：通过类型注入	
+				根据类型找对象	
+	-->
+
+	<bean class="com.mr.service.UserService" id="userService" autowire="byType"></bean>
+	
+	<bean class="com.mr.dao.UserDao" id="userDao1" ></bean>
+
+</beans>
